@@ -16,7 +16,7 @@ class CanonBall {
     ellipseMode(RADIUS);
     strokeWeight(7);
     stroke("red");
-    fill(0);
+    fill("0");
     ellipse(pos.x,pos.y,this.radius);
   };
 };
