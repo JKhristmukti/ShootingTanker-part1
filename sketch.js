@@ -1,52 +1,27 @@
-const { Engine, World, Bodies, Body, Mouse, MouseConstraint, Constraint, Composite, Detector } = Matter;
+const Engine=Matter.Engine;
+const World=Matter.World;
+const Bodies=Matter.Bodies;
 
-var tank,ground,ball1,ball2,canonball,canonballsprite,shootball,img,world;
-
-function preload() {
-   img=loadImage("canonBall.png");
-};
+var r1,r2,r3,world,engine;
 
 function setup() {
-   createCanvas(800,500);
+  createCanvas(800,400);
+  
+  engine=Engine.create();
+  world=engine.World;
 
-   canonballsprite=createSprite(50,450,20,20);
-   canonballsprite.addImage(img);
-
-   Engine.create();
-   world=Engine.World;
-
-   tank = new Tanker(50,450,50,20);
-   ground = new Ground(400,490,500,10);
-   ball1 = new Ball(600,150,10);
-   ball2 = new Ball(400,300,30);
-   canonball = new CanonBall(tank.x,tank.y);
-   shootball = new ShootBall(tank,canonball);
-
-   Engine.run(Engine);
-};
+}
 
 function draw() {
-   Engine.update(Engine);
+  background(255,255,255); 
+  Engine.update(engine);
+  
+  for (let index = 0; index < 800; index+random(1,20)) {
+     r1 = new Raindrop1(index,0,random(5,10),random(10,25));   
+  }
 
-   shootball.attach(canonballsprite);
-   
-   canonballsprite.x=canonball.position.x;
-   canonballsprite.y=canonball.position.y;
-
-   keyReleased();
-
-   tank.display();
-   ground.display();
-   ball1.display();
-   ball2.display();
-   canonball.display();
-   shootball.display();
-   drawSprites();
-};
-
-function keyReleased() {
-   if(keyCode == RIGHT_ARROW){
-      shootball.shoot();
-      Matter.Body.setStatic(shootball,false);
-   };
-};
+  r1.display();
+  r2.display();
+  r3.display(); 
+  drawSprites();
+}
