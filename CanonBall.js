@@ -6,7 +6,7 @@ class CanonBall {
       restitution : 0.8,
       frictionAir:0.06
     }
-    this.body = Bodies.circle(x,y,20);
+    this.body = Bodies.circle(x,y,20,options);
     this.radius = 20;
     World.add(world,this.body);
   };
@@ -16,7 +16,7 @@ class CanonBall {
     ellipseMode(RADIUS);
     strokeWeight(7);
     stroke("red");
-    fill("0");
+    fill(0);
     ellipse(pos.x,pos.y,this.radius);
   };
 };
